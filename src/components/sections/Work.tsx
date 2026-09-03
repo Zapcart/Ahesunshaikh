@@ -53,6 +53,7 @@ export default function Work() {
           // refresh after fonts, preloaders, or viewport changes settle.
           end: () => `+=${Math.max(2000, Math.round(amount * window.innerHeight * 1.3))}`,
           pin: true,
+          pinSpacing: true,
           scrub: 1,
           anticipatePin: 1,
           invalidateOnRefresh: true,
@@ -144,7 +145,7 @@ export default function Work() {
     <section
       id="work"
       ref={sectionRef}
-      className="relative h-screen overflow-hidden bg-[#0e0e0e]/80"
+      className="relative h-screen overflow-visible bg-[#0e0e0e]/80"
     >
       {/* Giant ghost heading behind every chapter — serif-italic cream whisper */}
       <div
@@ -154,15 +155,15 @@ export default function Work() {
         Work
       </div>
 
-      <div className="relative h-full">
+      <div className="relative h-full overflow-hidden">
         {/* ---- Act 1 · flagship intro ---- */}
-        <div className="work-pane relative h-full w-full">
+        <div className="work-pane absolute inset-0 h-full w-full">
           <TalkOpsIntroSlide project={project} />
         </div>
 
         {/* ---- Act 2 · architecture deep dive ---- */}
         {arch.map((step) => (
-          <div key={step.step} className="work-pane relative h-full w-full">
+          <div key={step.step} className="work-pane absolute inset-0 h-full w-full">
             <ArchitectureSlide step={step} steps={arch} />
           </div>
         ))}
