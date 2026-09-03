@@ -1,0 +1,248 @@
+{
+  "meta": {
+    "name": "Mohmmed Ahesun Naushad Shaikh",
+    "firstName": "Mohmmed",
+    "middleName": "Ahesun Naushad",
+    "shortName": "Ahesun",
+    "role": "Gen AI & AI Integration Developer",
+    "roleLine2": "Full-Stack Engineer · Next.js 14 / React 19",
+    "location": "Bhiwandi · Mumbai, MH",
+    "openTo": ["Thane", "Andheri", "Pune", "Remote"],
+    "phone": "+91 99608 24574",
+    "phoneRaw": "+919960824574",
+    "email": "9823ahsanshaikh@gmail.com",
+    "availability": "Open for Gen AI & full-stack roles",
+    "pronunciation": "Ah-he-sun"
+  },
+  "summary": {
+    "eyebrow": "Who I am",
+    "lead": "I design voice AI & full-stack SaaS that sell around the clock.",
+    "body": "Gen AI & AI Integration Developer turning LLMs, voice agents and modern web stacks into production software people use every day. I architect systems end-to-end — prompt design, real-time voice pipelines, WhatsApp automation, payments, SSR/SEO and live analytics — and I ship. My flagship, TalkOps, is live in production at talkops.in."
+  },
+  "highlights": [
+    { "label": "Flagship SaaS", "value": "TalkOps", "caption": "Gen AI voice + ops platform, live in production" },
+    { "label": "Voice coverage", "value": "24/7", "caption": "Dual-agent AI lead qualification" },
+    { "label": "WhatsApp / day", "value": "1000+", "caption": "MSG91 broadcast engine at full tilt" }
+  ],
+  "skills": {
+    "eyebrow": "My Arsenal",
+    "title": "Skills Matrix",
+    "groups": [
+      {
+        "id": "genai-llms",
+        "label": "Gen AI & LLMs",
+        "index": "01",
+        "accent": "#c9f24a",
+        "items": [
+          { "name": "Prompt Engineering", "tag": "System & few-shot", "level": 92 },
+          { "name": "LLM APIs", "tag": "OpenAI / Groq", "level": 88 },
+          { "name": "AI Voice Agents", "tag": "Realtime speech", "level": 90 },
+          { "name": "Agent Workflows", "tag": "Intent → action", "level": 86 },
+          { "name": "RAG Pipelines", "tag": "Context grounding", "level": 84 }
+        ]
+      },
+      {
+        "id": "voice-whatsapp",
+        "label": "Voice & WhatsApp Automation",
+        "index": "02",
+        "accent": "#ff6b4a",
+        "items": [
+          { "name": "MSG91 Engine", "tag": "WhatsApp / SMS", "level": 88 },
+          { "name": "Voice Flow", "tag": "24/7 call scripts", "level": 90 },
+          { "name": "WhatsApp API", "tag": "Templates & media", "level": 86 },
+          { "name": "Sentiment Tracking", "tag": "Live scoring", "level": 82 }
+        ]
+      },
+      {
+        "id": "web-frontend",
+        "label": "Web Frontend",
+        "index": "03",
+        "accent": "#5aa9ff",
+        "items": [
+          { "name": "Next.js", "tag": "14 · App Router", "level": 90 },
+          { "name": "React", "tag": "19", "level": 92 },
+          { "name": "TypeScript", "tag": "Typed", "level": 88 },
+          { "name": "Tailwind CSS", "tag": "Utility-first", "level": 95 },
+          { "name": "Framer Motion", "tag": "Animation", "level": 86 }
+        ]
+      },
+      {
+        "id": "backend-apis",
+        "label": "Backend APIs",
+        "index": "04",
+        "accent": "#b07cff",
+        "items": [
+          { "name": "Node.js", "tag": "Runtime", "level": 90 },
+          { "name": "Express.js", "tag": "REST APIs", "level": 90 },
+          { "name": "API Design", "tag": "REST architecture", "level": 92 },
+          { "name": "JWT Auth", "tag": "Secure sessions", "level": 88 },
+          { "name": "Arcjet", "tag": "Rate limiting", "level": 82 },
+          { "name": "Razorpay", "tag": "Payments API", "level": 86 }
+        ]
+      },
+      {
+        "id": "db-cloud",
+        "label": "Databases & Cloud",
+        "index": "05",
+        "accent": "#ffd166",
+        "items": [
+          { "name": "MongoDB", "tag": "Mongoose", "level": 88 },
+          { "name": "Firebase Admin", "tag": "Realtime", "level": 86 },
+          { "name": "MongoDB Atlas", "tag": "Cloud cluster", "level": 86 },
+          { "name": "Vercel", "tag": "Deploy / edge", "level": 88 },
+          { "name": "Git / GitHub", "tag": "VCS", "level": 90 }
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "eyebrow": "Selected Work",
+    "title": "The flagship project",
+    "description": "A single flagship — engineered end-to-end from AI voice agents and WhatsApp automation to payments, SSR/SEO and live analytics.",
+    "items": [
+      {
+        "id": "talkops",
+        "name": "TalkOps",
+        "category": "Gen AI Voice & Operations SaaS",
+        "url": "https://talkops.in",
+        "year": "2025",
+        "role": "Creator · Gen AI & Full-Stack Engineer",
+        "index": "01",
+        "stack": ["Next.js 14", "React 19", "TypeScript", "Tailwind", "MongoDB", "Firebase", "Razorpay", "MSG91"],
+        "features": [
+          "Dual-agent AI voice system — 24/7 real-time lead qualification & call handling",
+          "LLM-driven conversation engine with intent detection and sentiment scoring",
+          "MSG91 WhatsApp automation engine — 1000+ template broadcasts per day",
+          "High-conversion SSR pages with dynamic metadata and sitemaps for SEO",
+          "Razorpay billing with webhook-verified payment lifecycle and JWT auth",
+          "Firebase Admin realtime presence fused with MongoDB analytics dashboards"
+        ],
+        "description": "A production Gen AI Sales & Operations platform I architected end-to-end — AI voice agents, WhatsApp automation, payments, SEO and analytics working as one system.",
+        "stats": [
+          { "label": "Live product", "value": "talkops.in" },
+          { "label": "Voice coverage", "value": "24/7" },
+          { "label": "Broadcasts/day", "value": "1000+" }
+        ],
+        "architecture": [
+          {
+            "step": "01",
+            "title": "AI Voice Agents",
+            "desc": "A dual-agent LLM conversation layer answers calls, reads intent and qualifies leads in real time — no human on shift required.",
+            "tech": ["LLM calls", "Voice AI", "Intent detection"]
+          },
+          {
+            "step": "02",
+            "title": "MSG91 WhatsApp Engine",
+            "desc": "A template-driven broadcast pipeline that reliably delivers 1000+ WhatsApp messages per day with delivery webhooks.",
+            "tech": ["MSG91", "Webhooks", "Broadcast queue"]
+          },
+          {
+            "step": "03",
+            "title": "Razorpay Billing",
+            "desc": "Subscription plans wired to webhook-verified payment lifecycle events, guarded by hardened JWT auth.",
+            "tech": ["Razorpay", "Webhooks", "JWT auth"]
+          },
+          {
+            "step": "04",
+            "title": "SSR / SEO Layer",
+            "desc": "Next.js 14 server rendering, dynamic metadata and auto-generated sitemaps keep every marketing page crawlable and fast.",
+            "tech": ["Next.js 14", "SSR", "Sitemaps"]
+          },
+          {
+            "step": "05",
+            "title": "Analytics & Ops",
+            "desc": "Firebase Admin realtime presence is fused with MongoDB aggregations to power live operations dashboards.",
+            "tech": ["Firebase", "MongoDB", "Dashboards"]
+          }
+        ],
+        "theme": { "base": "#c9f24a", "from": "#202a04", "to": "#0b0f17" }
+      }
+    ]
+  },
+  "journey": {
+    "eyebrow": "Timeline",
+    "title": "Experience & Education",
+    "items": [
+      {
+        "type": "experience",
+        "period": "Jan 2025 — Present",
+        "title": "Gen AI & Full-Stack Developer",
+        "org": "Freelance / Self-Employed",
+        "location": "Mumbai, India",
+        "current": true,
+        "accent": "#c9f24a",
+        "points": [
+          "Founded & shipped TalkOps (talkops.in) — a Gen AI Sales & Operations SaaS serving real users in production.",
+          "Designed a dual-agent AI voice system: LLM conversations, real-time intent detection and sentiment scoring for 24/7 lead qualification.",
+          "Built the MSG91 WhatsApp automation engine delivering 1000+ broadcasts per day.",
+          "Integrated Razorpay billing, hardened auth and SSR/dynamic SEO across the platform.",
+          "Engineered admin dashboards on Firebase Admin realtime + MongoDB analytics."
+        ]
+      },
+      {
+        "type": "education",
+        "period": "Expected Apr 2026",
+        "title": "B.Sc. Information Technology",
+        "org": "Laxman Devram Sonawne College, Kalyan",
+        "location": "Kalyan, India",
+        "current": true,
+        "accent": "#ffd166",
+        "points": [
+          "Bachelor of Science in Information Technology (B.Sc. IT)",
+          "Foundational CS, data structures & software engineering curriculum.",
+          "Applied coursework directly to production AI & full-stack builds."
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "headline1": "Let's build",
+    "headline2": "something great",
+    "headline3": "together",
+    "sub": "Currently open to Thane / Andheri / Pune & Remote opportunities. Freelance, contract or full-time — my inbox is always open.",
+    "email": "9823ahsanshaikh@gmail.com",
+    "phone": "+91 99608 24574",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "handle": "in/ahesun-shaikh-0760b9334",
+        "url": "https://linkedin.com/in/ahesun-shaikh-0760b9334",
+        "short": "linkedin.com/in/ahesun-shaikh"
+      },
+      {
+        "label": "GitHub",
+        "handle": "@Zapcart",
+        "url": "https://github.com/Zapcart",
+        "short": "github.com/Zapcart"
+      },
+      {
+        "label": "TalkOps",
+        "handle": "Live Gen AI SaaS",
+        "url": "https://talkops.in",
+        "short": "talkops.in"
+      }
+    ]
+  },
+  "marquee": [
+    "Gen AI Integration",
+    "AI Voice Agents",
+    "LLM Workflows",
+    "Prompt Engineering",
+    "Voice Automation",
+    "WhatsApp Automation",
+    "Full-Stack Engineering",
+    "Next.js 14",
+    "React 19",
+    "TypeScript",
+    "MongoDB",
+    "Firebase",
+    "Razorpay",
+    "MSG91"
+  ],
+  "footer": {
+    "name": "Ahesun Shaikh",
+    "tagline": "Designed & engineered in Mumbai.",
+    "rights": "© 2025 Mohmmed Ahesun Naushad Shaikh"
+  }
+}

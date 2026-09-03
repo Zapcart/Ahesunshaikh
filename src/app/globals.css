@@ -1,0 +1,337 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   DESIGN TOKENS — dark, cinematic, Awwwards-grade
+   ============================================================ */
+:root {
+  --bg: #070709;
+  --ink-950: #070709;
+  --ink-900: #0b0b0f;
+  --ink-800: #101016;
+  --ink-700: #17171f;
+  --ink-600: #20202a;
+  --mist: #e9e9ec;
+  --smoke: #9a9aa3;
+  --lime: #c9f24a;
+  --coral: #ff6b4a;
+  --grid-size: 80px;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+@layer base {
+  html {
+    background: var(--bg);
+  }
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  body {
+    @apply bg-ink-950 text-mist font-sans antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--lime);
+    color: var(--ink-950);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--ink-950);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--ink-600);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--smoke);
+  }
+
+  a {
+    @apply no-underline;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ============================================================
+   COMPONENT / UTILITY LAYERS
+   ============================================================ */
+@layer components {
+  .container-px {
+    @apply px-5 sm:px-8 lg:px-12;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[11px] uppercase tracking-mega text-smoke;
+  }
+
+  .eyebrow::before {
+    content: "";
+    @apply block h-px w-10 bg-smoke/60;
+  }
+
+  .btn-base {
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-sans text-sm;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-[11px] font-medium tracking-wide text-mist/80 backdrop-blur-sm transition-colors duration-300;
+  }
+
+  .chip:hover {
+    @apply border-white/25 text-mist;
+  }
+}
+
+@layer utilities {
+  .font-outline {
+    -webkit-text-stroke: 1px rgba(233, 233, 236, 0.28);
+    color: transparent;
+  }
+
+  .text-gradient {
+    background: linear-gradient(100deg, #ffffff 0%, #e9e9ec 40%, #9a9aa3 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-grid {
+    background-image: linear-gradient(rgba(233, 233, 236, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(233, 233, 236, 0.045) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+  }
+
+  .mask-fade-y {
+    mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
+  }
+
+  .grayscale-img {
+    filter: grayscale(1) contrast(1.05);
+  }
+
+  .noise-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  @keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -10%); }
+    20% { transform: translate(-15%, 5%); }
+    30% { transform: translate(7%, -25%); }
+    40% { transform: translate(-5%, 25%); }
+    50% { transform: translate(-15%, 10%); }
+    60% { transform: translate(15%, 0%); }
+    70% { transform: translate(0%, 15%); }
+    80% { transform: translate(3%, 35%); }
+    90% { transform: translate(-10%, 10%); }
+  }
+
+  /* Word-mask reveal: inner spans translate within overflowing line */
+  .mask-line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+  }
+
+  .reveal-mask {
+    display: inline-block;
+    will-change: transform;
+  }
+
+  /* marquee */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .spin-slow {
+    animation: spin 14s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .pulse-dot {
+    position: relative;
+  }
+  .pulse-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: currentColor;
+    animation: pulse-ring 2s var(--ease-out-expo) infinite;
+  }
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(3.4);
+      opacity: 0;
+    }
+  }
+}
+
+/* ============================================================
+   CURSOR
+   ============================================================ */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  border-radius: 50%;
+  will-change: transform;
+}
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: #fff;
+}
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition:
+    width 0.25s var(--ease-out-expo),
+    height 0.25s var(--ease-out-expo),
+    border-color 0.25s ease;
+}
+.cursor-ring.is-hover {
+  width: 64px;
+  height: 64px;
+  border-color: var(--lime);
+}
+@media (hover: none), (pointer: coarse) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   TEXT ROLL LINKS (nav / footer)
+   ============================================================ */
+.roll-link {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+.roll-link > span {
+  display: inline-block;
+  transition: transform 0.55s var(--ease-out-expo);
+}
+.roll-link > span:last-child {
+  position: absolute;
+  left: 0;
+  top: 100%;
+}
+.roll-link:hover > span:first-child {
+  transform: translateY(-100%);
+}
+.roll-link:hover > span:last-child {
+  transform: translateY(-100%);
+}
+
+/* ============================================================
+   WORK CARD — tilt + glare surfaces
+   ============================================================ */
+.work-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+.work-card__inner {
+  transform: translateZ(40px);
+  transform-style: preserve-3d;
+}
+.work-card__glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    600px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.08),
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.work-card:hover .work-card__glare {
+  opacity: 1;
+}
+
+/* ============================================================
+   PRELOADER
+   ============================================================ */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink-950);
+}
+
+/* ============================================================
+   PERFORMANCE — GPU layer promotion for transform-driven motion
+   ============================================================ */
+.work-pane,
+.work-pane__visual,
+.work-pane__visual-inner {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.pulse-dot::after,
+.spin-slow {
+  will-change: transform;
+}
