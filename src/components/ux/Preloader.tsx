@@ -74,7 +74,7 @@ export default function Preloader() {
             style={{ maskImage: "radial-gradient(circle at 50% 50%, black, transparent 75%)" }}
           />
 
-          <div className="relative flex w-full flex-col items-center px-6">
+          <div className="relative flex min-h-[220px] w-full flex-col items-center justify-center px-6 py-8">
             <p
               className="font-sans text-[11px] uppercase tracking-mega text-smoke"
               style={{ opacity: done ? 0 : 1, transition: "opacity .4s ease" }}
@@ -82,7 +82,7 @@ export default function Preloader() {
               Portfolio — {meta.shortName} Shaikh
             </p>
 
-            <div className="relative mt-8 h-[1px] w-56 overflow-hidden bg-white/10 sm:w-72">
+            <div className="relative mt-7 h-[2px] w-56 overflow-hidden bg-white/10 sm:w-72">
               <div
                 className="absolute inset-y-0 left-0 bg-crimson"
                 style={{ width: `${count}%`, transition: "width .3s var(--ease-out-expo)" }}
@@ -90,14 +90,19 @@ export default function Preloader() {
             </div>
 
             <div
-              className="mt-6 flex h-[1.4em] items-baseline overflow-hidden"
+              className="mt-5 flex min-h-[120px] items-center justify-center px-2 py-4"
               style={{ opacity: done ? 0 : 1, transition: "opacity .5s ease .15s" }}
             >
-              <span className="font-display text-7xl font-bold leading-none tracking-tightest text-mist sm:text-9xl">
+              <span className="font-display text-6xl font-bold leading-[1.05] tracking-tight text-white sm:text-8xl">
                 {count}
               </span>
-              <span className="ml-1 font-display text-2xl text-smoke">%</span>
+              <span className="ml-1.5 self-end pb-3 font-display text-2xl font-bold leading-none text-cream sm:pb-5 sm:text-3xl">
+                %
+              </span>
             </div>
+            <p className="mt-1 font-sans text-[10px] font-medium uppercase tracking-mega text-smoke">
+              Loading experience · {count}%
+            </p>
           </div>
 
           {/* Split curtains */}
