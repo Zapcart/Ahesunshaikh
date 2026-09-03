@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Bodoni_Moda, Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { meta } from "@/lib/data";
 import SmoothScroll from "@/components/ux/SmoothScroll";
@@ -8,12 +8,23 @@ import Preloader from "@/components/ux/Preloader";
 import Grain from "@/components/ux/Grain";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import ThemeStage from "@/components/ux/ThemeStage";
+import BackgroundCanvas from "@/components/ux/BackgroundCanvas";
 
 const display = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   variable: "--font-display",
   display: "swap",
+});
+
+const serif = Bodoni_Moda({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  display: "swap",
+  adjustFontFallback: false,
 });
 
 const sans = Inter({
@@ -52,14 +63,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable}`}>
-      <body>
+    <html lang="en" className={`${display.variable} ${serif.variable} ${sans.variable}`}>
+      <body data-theme="charcoal">
         <Grain />
         <CustomCursor />
         <SmoothScroll>
+          <ThemeStage />
+          <BackgroundCanvas />
           <Preloader />
           <Navbar />
-          <main>{children}</main>
+          <main className="relative z-10">{children}</main>
           <Footer />
         </SmoothScroll>
       </body>

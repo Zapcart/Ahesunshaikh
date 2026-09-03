@@ -84,7 +84,7 @@ export default function Preloader() {
 
             <div className="relative mt-8 h-[1px] w-56 overflow-hidden bg-white/10 sm:w-72">
               <div
-                className="absolute inset-y-0 left-0 bg-lime"
+                className="absolute inset-y-0 left-0 bg-crimson"
                 style={{ width: `${count}%`, transition: "width .3s var(--ease-out-expo)" }}
               />
             </div>
@@ -102,7 +102,7 @@ export default function Preloader() {
 
           {/* Split curtains */}
           <motion.div
-            className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-lime/[0.06]"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-crimson/[0.12]"
             initial={{ opacity: 1 }}
             animate={{ opacity: done ? 1 : 0.4 }}
             transition={{ duration: 0.4 }}

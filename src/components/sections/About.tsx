@@ -16,8 +16,10 @@ const item = {
 };
 
 /**
- * About / manifesto — masked line reveal of the summary plus a
- * derived stats strip from live production achievements.
+ * About — cream paper colour-block. Editorial serif manifesto over
+ * comic texture washes, with ink-frame stat cards carrying the crimson
+ * headline accent. The fixed background canvas's crimson waves re-ink
+ * behind this opaque "page" via the ThemeDirector.
  */
 export default function About() {
   const ref = useRef<HTMLElement>(null);
@@ -27,22 +29,34 @@ export default function About() {
   const leadWords = summary.lead.split(" ");
 
   return (
-    <section id="about" ref={ref} className="relative overflow-hidden bg-ink-900 py-28 sm:py-36">
-      <div className="pointer-events-none absolute -left-40 top-1/4 h-96 w-96 rounded-full bg-lime/[0.05] blur-[120px]" />
-      <div className="pointer-events-none absolute -right-40 bottom-1/4 h-96 w-96 rounded-full bg-coral/[0.05] blur-[120px]" />
+    <section
+      id="about"
+      ref={ref}
+      className="relative overflow-hidden bg-[#f4f1ea] py-28 text-[#121212] sm:py-36"
+    >
+      {/* comic texture washes */}
+      <div className="bg-halftone absolute inset-0 opacity-25" aria-hidden />
+      <div className="bg-grid-dark absolute inset-0 opacity-40" aria-hidden />
+      {/* giant ghost outline */}
+      <p
+        aria-hidden
+        className="font-outline-dark pointer-events-none absolute -bottom-8 right-0 select-none font-serif text-[15vw] font-extrabold italic leading-none opacity-[0.1]"
+      >
+        Dossier
+      </p>
 
       <div className="container-px relative mx-auto max-w-[1600px]">
         <motion.p
           variants={item}
           initial="hidden"
           animate={inView ? "show" : "hidden"}
-          className="eyebrow mb-14"
+          className="eyebrow mb-7 !text-[#8a8172] before:!bg-[#8a8172]/50"
         >
           {summary.eyebrow}
         </motion.p>
 
         {/* lead headline */}
-        <h2 className="max-w-5xl font-display text-4xl font-bold leading-[1.02] tracking-tight text-mist sm:text-6xl lg:text-7xl">
+        <h2 className="max-w-6xl font-serif text-5xl font-bold leading-[1.04] tracking-[-0.01em] text-[#121212] sm:text-7xl lg:text-8xl">
           {leadWords.map((w, i) => (
             <span key={i} className="inline-block overflow-hidden align-bottom">
               <motion.span
@@ -51,7 +65,7 @@ export default function About() {
                 animate={inView ? { y: "0%" } : { y: "115%" }}
                 transition={{ duration: 0.9, delay: 0.1 + i * 0.04, ease: EASE }}
               >
-                {w === "AI" ? <span className="text-lime">{w}</span> : w}
+                {w === "AI" ? <span className="italic text-crimson">{w}</span> : w}
               </motion.span>
               {i < leadWords.length - 1 ? "\u00A0" : null}
             </span>
@@ -63,7 +77,7 @@ export default function About() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.45, ease: EASE }}
-          className="mt-10 max-w-3xl text-base font-light leading-relaxed text-smoke sm:text-xl"
+          className="mt-10 max-w-3xl text-base font-light leading-relaxed text-[#4a443a] sm:text-xl"
         >
           {words.map((w, i) => (
             <motion.span
@@ -79,26 +93,30 @@ export default function About() {
           ))}
         </motion.p>
 
-        {/* stats strip */}
+        {/* stats strip — ink frame panels */}
         <motion.div
           variants={container}
           initial="hidden"
           animate={inView ? "show" : "hidden"}
-          className="mt-20 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-3"
+          className="mt-20 grid grid-cols-1 gap-6 md:grid-cols-3"
         >
-          {highlights.map((h) => (
+          {highlights.map((h, i) => (
             <motion.div
               key={h.label}
               variants={item}
-              className="group relative bg-ink-900 p-8 transition-colors duration-500 hover:bg-ink-800"
+              className="panel-ink group rounded-[3px] p-8 transition-transform duration-300 hover:-translate-y-1.5"
             >
-              <p className="text-[11px] uppercase tracking-mega text-smoke">
+              <p className="flex items-center justify-between text-[11px] uppercase tracking-mega text-cream/50">
                 {h.label}
+                <span className="font-serif text-xs italic text-crimson">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
               </p>
-              <p className="mt-4 font-display text-5xl font-bold tracking-tight text-lime transition-transform duration-500 group-hover:-translate-y-1 sm:text-6xl">
+              <p className="mt-5 font-serif text-5xl font-bold italic tracking-tight text-cream sm:text-6xl">
                 {h.value}
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-smoke/70">{h.caption}</p>
+              <span aria-hidden className="mt-6 block h-1 w-10 bg-crimson" />
+              <p className="mt-3 text-sm leading-relaxed text-cream/60">{h.caption}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -107,8 +125,9 @@ export default function About() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.8, duration: 0.8 }}
-          className="mt-8 text-xs uppercase tracking-mega text-smoke/50"
+          className="mt-9 text-xs uppercase tracking-mega text-[#8a8172]"
         >
+          <span aria-hidden className="mr-2 inline-block h-2 w-2 rotate-45 bg-crimson" />
           Based in {meta.location} · Currently open to {meta.openTo.join(" · ")}
         </motion.p>
       </div>

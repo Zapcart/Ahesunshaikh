@@ -7,8 +7,9 @@ import { journey } from "@/lib/data";
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 /**
- * Journey — minimalist vertical timeline with an animated scroll
- * progress filler rail and type-coloured nodes for experience/education.
+ * Journey — cream paper colour-block. Editorial serif timeline with an
+ * animated crimson progress rail, ink node markers and dark period chips
+ * that keep every accent legible on the paper page.
  */
 export default function Journey() {
   const ref = useRef<HTMLElement>(null);
@@ -22,8 +23,20 @@ export default function Journey() {
   const scaleY = useSpring(scrollYProgress, { stiffness: 90, damping: 26, mass: 0.4 });
 
   return (
-    <section id="journey" ref={ref} className="relative overflow-hidden bg-ink-900 py-28 sm:py-36">
-      <div className="pointer-events-none absolute -left-32 bottom-0 h-96 w-96 rounded-full bg-coral/[0.05] blur-[130px]" />
+    <section
+      id="journey"
+      ref={ref}
+      className="relative overflow-hidden bg-[#f4f1ea] py-28 text-[#121212] sm:py-36"
+    >
+      {/* comic texture washes */}
+      <div className="bg-halftone absolute inset-0 opacity-20" aria-hidden />
+      <div className="bg-grid-dark absolute inset-0 opacity-30" aria-hidden />
+      <p
+        aria-hidden
+        className="font-outline-dark pointer-events-none absolute -bottom-8 left-0 select-none font-serif text-[15vw] font-extrabold italic leading-none opacity-[0.08]"
+      >
+        Timeline
+      </p>
 
       <div className="container-px relative mx-auto max-w-5xl">
         <motion.div
@@ -32,11 +45,16 @@ export default function Journey() {
           viewport={{ once: true, margin: "-15% 0px" }}
           transition={{ duration: 0.9, ease: EASE }}
         >
-          <p className="eyebrow mb-6">{journey.eyebrow}</p>
-          <h2 className="font-display text-5xl font-bold leading-[0.95] tracking-tight text-mist sm:text-7xl">
+          <p className="eyebrow mb-6 !text-[#8a8172] before:!bg-[#8a8172]/50">
+            {journey.eyebrow}
+          </p>
+          <h2 className="font-serif text-5xl font-bold leading-[0.95] tracking-[-0.01em] text-[#121212] sm:text-7xl">
             Journey
+            <span className="ml-3 font-serif text-4xl italic text-crimson sm:text-6xl">
+              →
+            </span>
           </h2>
-          <p className="mt-5 max-w-lg text-sm leading-relaxed text-smoke">
+          <p className="mt-5 max-w-lg text-sm leading-relaxed text-[#4a443a]">
             Shipping Gen AI voice & full-stack SaaS since 2025 — while sharpening
             the fundamentals through formal CS education.
           </p>
@@ -45,10 +63,10 @@ export default function Journey() {
         {/* ---- timeline ---- */}
         <div ref={railRef} className="relative mt-16 space-y-16 sm:space-y-24">
           {/* static rail */}
-          <div className="absolute bottom-2 left-[7px] top-2 w-px bg-white/10 sm:left-1/2" />
+          <div className="absolute bottom-2 left-[7px] top-2 w-[2px] bg-[#141414]/15 sm:left-1/2" />
           {/* progress filler */}
           <motion.div
-            className="absolute bottom-2 left-[7px] top-2 w-px origin-top bg-gradient-to-b from-lime via-lime/70 to-lime/20 sm:left-1/2"
+            className="absolute bottom-2 left-[7px] top-2 w-[2px] origin-top bg-gradient-to-b from-crimson via-crimson/70 to-crimson/20 sm:left-1/2"
             style={{ scaleY }}
           />
 
@@ -62,59 +80,46 @@ export default function Journey() {
                 viewport={{ once: true, margin: "-18% 0px" }}
                 transition={{ duration: 0.9, ease: EASE }}
                 className={`relative flex flex-col gap-4 pl-10 sm:w-1/2 sm:pl-0 ${
-                  leftSide
-                    ? "sm:pr-14 sm:text-right"
-                    : "sm:ml-auto sm:pl-14"
+                  leftSide ? "sm:pr-14 sm:text-right" : "sm:ml-auto sm:pl-14"
                 }`}
               >
-                {/* node */}
+                {/* node — ink dot on paper, crimson pulse for current */}
                 <span
-                  className={`absolute left-0 top-2 h-[15px] w-[15px] rounded-full border-2 sm:left-auto ${
-                    leftSide ? "sm:-right-[7.5px]" : "sm:-left-[7.5px]"
+                  className={`absolute left-0 top-2 h-[17px] w-[17px] rounded-full border-[3px] border-[#0e0e0e] bg-[#0e0e0e] sm:left-auto ${
+                    leftSide ? "sm:-right-[8.5px]" : "sm:-left-[8.5px]"
                   }`}
-                  style={{
-                    background: "#0b0b0f",
-                    borderColor: item.accent,
-                    boxShadow: `0 0 0 5px ${item.accent}18`,
-                  }}
                 >
                   {item.current && (
-                    <span
-                      className="pulse-dot absolute inset-0 rounded-full"
-                      style={{ background: item.accent, color: item.accent }}
-                    />
+                    <span className="pulse-dot absolute inset-0 rounded-full bg-crimson text-crimson" />
                   )}
                 </span>
 
+                {/* period — dark ink chip with accent dash */}
                 <span
-                  className="inline-flex w-fit items-center gap-2 rounded-full border px-3.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em]"
-                  style={{
-                    color: item.accent,
-                    borderColor: `${item.accent}40`,
-                    background: `${item.accent}12`,
-                    marginInline: leftSide ? "0 0 0 auto" : "0",
-                    marginLeft: leftSide ? undefined : "0",
-                  }}
+                  className="inline-flex w-fit items-center rounded-full border-2 border-[#0e0e0e] bg-[#17171b] px-3.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-cream"
+                  style={{ marginInline: leftSide ? "0 0 0 auto" : "0" }}
                 >
-                  <span
-                    className={`flex items-center gap-2 ${leftSide ? "sm:flex-row-reverse" : ""}`}
-                    style={{ width: "100%", justifyContent: leftSide ? "flex-end" : "flex-start" }}
-                  >
+                  <span className="flex items-center gap-2">
+                    <span
+                      className="h-2 w-2 rounded-full"
+                      style={{ background: item.accent }}
+                      aria-hidden
+                    />
                     {item.period}
                   </span>
                 </span>
 
                 <div>
-                  <h3 className="font-display text-2xl font-bold tracking-tight text-mist sm:text-3xl">
+                  <h3 className="font-serif text-2xl font-bold tracking-tight text-[#141414] sm:text-3xl">
                     {item.title}
                   </h3>
-                  <p className="mt-1 text-sm font-medium" style={{ color: item.accent }}>
+                  <p className="mt-1 text-sm font-semibold text-crimson">
                     {item.org} — {item.location}
                   </p>
                 </div>
 
                 <ul
-                  className={`space-y-2.5 text-sm leading-relaxed text-smoke ${
+                  className={`space-y-2.5 text-sm leading-relaxed text-[#4a443a] ${
                     leftSide ? "sm:ml-auto" : ""
                   }`}
                   style={{ maxWidth: leftSide ? undefined : "none" }}
@@ -122,8 +127,7 @@ export default function Journey() {
                   {item.points.map((point) => (
                     <li key={point} className="flex gap-3">
                       <span
-                        className="mt-[9px] inline-block h-1 w-3 shrink-0 rounded-full"
-                        style={{ background: item.accent }}
+                        className="mt-[9px] inline-block h-[3px] w-3 shrink-0 rounded-full bg-crimson"
                         aria-hidden
                       />
                       <span>{point}</span>

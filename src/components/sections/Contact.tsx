@@ -8,8 +8,9 @@ import { contact, meta } from "@/lib/data";
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 /**
- * Contact — oversized kinetic headline, magnetic copy-to-clipboard
- * buttons for email & phone plus direct social / live-project links.
+ * Contact — the closing noir block. Oversized serif headline (cream + crimson
+ * gradient), a comic cream-block copy-to-clipboard CTA with hard crimson
+ * shadow, panel-ink social tiles and a giant outlined "Contact" proof word.
  */
 export default function Contact() {
   const [copied, setCopied] = useState<"email" | "phone" | null>(null);
@@ -40,9 +41,24 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-ink-950 py-32 sm:py-44">
-      {/* ambient glows */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[60vh] w-[80vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-lime/[0.05] blur-[160px]" />
+    <section
+      id="contact"
+      className="relative overflow-hidden bg-[#0b0b0f] py-32 sm:py-44"
+    >
+      {/* comic texture washes */}
+      <div className="bg-grid absolute inset-0 opacity-40" aria-hidden />
+      <div className="bg-halftone-light absolute inset-0 opacity-[0.06]" aria-hidden />
+
+      {/* crimson ambient bloom */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[60vh] w-[80vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-crimson/[0.07] blur-[160px]" />
+
+      {/* ghost proof word */}
+      <p
+        aria-hidden
+        className="font-outline pointer-events-none absolute -bottom-12 left-1/2 -translate-x-1/2 select-none whitespace-nowrap font-serif text-[17vw] font-extrabold italic leading-none opacity-[0.14]"
+      >
+        Contact
+      </p>
 
       <div className="container-px relative mx-auto max-w-[1400px]">
         <motion.div
@@ -52,31 +68,34 @@ export default function Contact() {
           viewport={{ once: true, margin: "-12% 0px" }}
           className="flex flex-col items-center text-center"
         >
-          <motion.p variants={word} className="eyebrow !w-auto justify-center">
+          <motion.p
+            variants={word}
+            className="eyebrow !w-auto justify-center !text-cream/60 before:!bg-cream/40"
+          >
             <span className="inline-flex items-center gap-3">
-              <span className="pulse-dot inline-block h-2 w-2 rounded-full bg-lime text-lime" />
+              <span className="pulse-dot inline-block h-2 w-2 rounded-full bg-crimson text-crimson" />
               {contact.eyebrow} — {meta.availability}
             </span>
           </motion.p>
 
-          <h2 className="mt-8 font-display font-bold leading-[0.88] tracking-tightest">
+          <h2 className="mt-8 font-serif font-bold leading-[0.88] tracking-[-0.02em]">
             {contact.headline1.split(" ").map((w, i) => (
               <span key={i} className="inline-block overflow-hidden align-bottom">
                 <motion.span
                   variants={word}
-                  className="inline-block text-[clamp(3rem,10vw,11rem)] text-mist"
+                  className="inline-block text-[clamp(3rem,10vw,11rem)] text-cream"
                 >
                   {w}
                 </motion.span>
               </span>
             ))}
           </h2>
-          <h2 className="font-display font-bold leading-[0.88] tracking-tightest">
+          <h2 className="font-serif font-bold leading-[0.88] tracking-[-0.02em]">
             {contact.headline2.split(" ").map((w, i) => (
               <span key={i} className="inline-block overflow-hidden align-bottom">
                 <motion.span
                   variants={word}
-                  className="inline-block text-[clamp(3rem,10vw,11rem)] text-gradient"
+                  className="text-gradient-crimson inline-block text-[clamp(3rem,10vw,11rem)]"
                 >
                   {w}
                 </motion.span>
@@ -86,7 +105,7 @@ export default function Contact() {
 
           <motion.p
             variants={word}
-            className="mt-10 max-w-xl text-base font-light leading-relaxed text-smoke sm:text-lg"
+            className="mt-10 max-w-xl text-base font-light leading-relaxed text-cream/60 sm:text-lg"
           >
             {contact.sub}
           </motion.p>
@@ -99,7 +118,7 @@ export default function Contact() {
             <Magnetic strength={0.3}>
               <button
                 onClick={() => copy("email", contact.email)}
-                className="group relative flex items-center gap-4 overflow-hidden rounded-full bg-lime px-8 py-5 text-sm font-semibold text-ink-950 transition-colors duration-300 hover:bg-mist"
+                className="group relative flex items-center gap-4 rounded-[3px] border-2 border-[#0e0e0e] bg-cream px-8 py-5 text-sm font-bold text-[#0e0e0e] shadow-[5px_5px_0_0_#c82323] transition-all duration-300 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[8px_8px_0_0_#c82323]"
                 data-cursor="hover"
               >
                 <span className="relative z-10 flex items-center gap-3">
@@ -114,7 +133,7 @@ export default function Contact() {
             <Magnetic strength={0.3}>
               <button
                 onClick={() => copy("phone", contact.phone.replace(/\s/g, ""))}
-                className="group flex items-center gap-3 rounded-full border border-white/20 px-8 py-5 text-sm font-medium text-mist transition-colors duration-300 hover:border-lime hover:text-lime"
+                className="group flex items-center gap-3 rounded-[3px] border-2 border-cream/25 px-8 py-5 text-sm font-semibold text-cream transition-colors duration-300 hover:border-crimson hover:text-crimson"
                 data-cursor="hover"
               >
                 {copied === "phone" ? "✓ Copied!" : contact.phone}
@@ -125,30 +144,36 @@ export default function Contact() {
             </Magnetic>
           </motion.div>
 
-          {/* social tiles */}
+          {/* social tiles — panel-ink cards */}
           <motion.div
             variants={word}
             className="mt-20 grid w-full max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3"
           >
-            {contact.socials.map((social) => (
+            {contact.socials.map((social, i) => (
               <a
                 key={social.label}
                 href={social.url}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-ink-900/60 p-6 text-left transition-colors duration-400 hover:border-lime/40"
+                className="group relative overflow-hidden rounded-[3px] border-2 border-cream/10 bg-cream/[0.03] p-6 text-left shadow-[5px_5px_0_0_rgba(200,35,35,0.16)] transition-all duration-400 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:border-crimson/50 hover:shadow-[7px_7px_0_0_rgba(200,35,35,0.28)]"
                 data-cursor="hover"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-display text-lg font-bold text-mist group-hover:text-lime">
+                  <span className="font-serif text-lg font-bold italic text-cream transition-colors duration-300 group-hover:text-crimson">
                     {social.label}
                   </span>
-                  <span className="text-smoke transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                  <span className="text-cream/40 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-crimson">
                     ↗
                   </span>
                 </div>
-                <p className="mt-3 truncate text-xs text-smoke/80">{social.short}</p>
-                <div className="absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-lime transition-transform duration-500 group-hover:scale-x-100" />
+                <p className="mt-3 truncate text-xs text-cream/45">{social.short}</p>
+                <span
+                  aria-hidden
+                  className="absolute right-4 top-3 font-serif text-[10px] font-bold italic text-cream/25"
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-crimson transition-transform duration-500 group-hover:scale-x-100" />
               </a>
             ))}
           </motion.div>
@@ -157,7 +182,7 @@ export default function Contact() {
           <motion.a
             variants={word}
             href={`mailto:${contact.email}`}
-            className="mt-24 inline-flex items-center gap-4 text-xs uppercase tracking-mega text-smoke transition-colors hover:text-lime"
+            className="mt-24 inline-flex items-center gap-4 text-xs uppercase tracking-mega text-cream/50 transition-colors hover:text-crimson"
           >
             <span className="h-px w-8 bg-current" />
             Say hello — {contact.email}

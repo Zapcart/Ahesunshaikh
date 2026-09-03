@@ -83,7 +83,7 @@ export default function AuroraField() {
       depthWrite: false,
       opacity: 0.9,
       blending: THREE.AdditiveBlending,
-      color: new THREE.Color("#c9f24a"),
+      color: new THREE.Color("#f4f1ea"),
       sizeAttenuation: true,
     });
 
@@ -96,9 +96,9 @@ export default function AuroraField() {
     const ringGeo = new THREE.TorusGeometry(3.4, 0.006, 8, 160);
     for (let i = 0; i < 2; i++) {
       const ringMat = new THREE.MeshBasicMaterial({
-        color: i === 0 ? "#c9f24a" : "#ff6b4a",
+        color: i === 0 ? "#f4f1ea" : "#c82323",
         transparent: true,
-        opacity: i === 0 ? 0.35 : 0.18,
+        opacity: i === 0 ? 0.2 : 0.14,
       });
       const ring = new THREE.Mesh(ringGeo, ringMat);
       ring.rotation.x = Math.PI / 2.1 + i * 0.5;
@@ -162,7 +162,7 @@ export default function AuroraField() {
       camera.position.y += (current.y * 0.35 - camera.position.y) * 0.04;
       camera.lookAt(0, 0, 0);
 
-      material.opacity = 0.7 + Math.sin(t * 0.6) * 0.15;
+      material.opacity = 0.42 + Math.sin(t * 0.6) * 0.12;
 
       renderer.render(scene, camera);
       rafId = requestAnimationFrame(tick);

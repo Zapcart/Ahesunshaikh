@@ -16,9 +16,17 @@ const config: Config = {
         smoke: "#9a9aa3",
         lime: "#c9f24a",
         coral: "#ff6b4a",
+        charcoal: {
+          DEFAULT: "#121212",
+          deep: "#0e0e0e",
+          light: "#1a1a1a",
+        },
+        cream: "#f4f1ea",
+        crimson: "#c82323",
       },
       fontFamily: {
         display: ["var(--font-display)", "ui-sans-serif", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "Georgia", "ui-serif", "serif"],
         sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       letterSpacing: {

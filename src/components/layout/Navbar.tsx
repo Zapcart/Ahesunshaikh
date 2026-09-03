@@ -50,7 +50,9 @@ export default function Navbar() {
       <header
         className={cn(
           "fixed inset-x-0 top-0 z-[500] transition-colors duration-500",
-          scrolled && !open ? "bg-ink-950/70 backdrop-blur-md" : "bg-transparent"
+          scrolled && !open
+            ? "border-b border-cream/10 bg-[#0d0d0f]/80 backdrop-blur-md"
+            : "bg-transparent"
         )}
       >
         <nav className="container-px flex items-center justify-between py-5">
@@ -59,11 +61,11 @@ export default function Navbar() {
             className="group flex items-baseline gap-2"
             aria-label="Back to top"
           >
-            <span className="font-display text-lg font-bold tracking-tight text-mist">
+            <span className="font-serif text-xl font-bold italic tracking-tight text-cream">
               {meta.shortName}
             </span>
-            <span className="text-smoke">/</span>
-            <span className="font-sans text-[10px] uppercase tracking-mega text-lime">
+            <span className="text-cream/30">/</span>
+            <span className="font-serif text-[11px] font-semibold uppercase italic tracking-mega text-crimson">
               dev
             </span>
           </button>
@@ -73,16 +75,16 @@ export default function Navbar() {
               <button
                 key={l.id}
                 onClick={() => scrollTo(l.id)}
-                className="roll-link text-xs uppercase tracking-[0.2em] text-smoke hover:text-mist"
+                className="roll-link text-xs uppercase tracking-[0.2em] text-cream/70 hover:text-cream"
               >
                 <span>{l.label}</span>
-                <span aria-hidden className="text-lime">
+                <span aria-hidden className="text-crimson">
                   {l.label}
                 </span>
               </button>
             ))}
-            <span className="ml-2 flex items-center gap-2 rounded-full border border-lime/25 bg-lime/10 px-3 py-1.5 text-[10px] font-medium uppercase tracking-wider text-lime">
-              <span className="pulse-dot inline-block h-1.5 w-1.5 rounded-full bg-lime" />
+            <span className="ml-2 flex items-center gap-2 rounded-full border-2 border-crimson/40 bg-crimson/15 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-cream backdrop-blur-sm">
+              <span className="pulse-dot inline-block h-1.5 w-1.5 rounded-full bg-crimson text-crimson" />
               Open to work
             </span>
           </div>
@@ -94,13 +96,13 @@ export default function Navbar() {
           >
             <span
               className={cn(
-                "h-px w-6 bg-mist transition-all duration-300",
+                "h-px w-6 bg-cream transition-all duration-300",
                 open && "translate-y-[3px] rotate-45"
               )}
             />
             <span
               className={cn(
-                "h-px w-6 bg-mist transition-all duration-300",
+                "h-px w-6 bg-cream transition-all duration-300",
                 open && "-translate-y-[3px] -rotate-45"
               )}
             />
@@ -112,7 +114,7 @@ export default function Navbar() {
         {open && (
           <motion.div
             key="menu"
-            className="fixed inset-0 z-[550] flex flex-col justify-between bg-ink-900/95 px-6 pb-8 pt-28 backdrop-blur-2xl md:hidden"
+            className="fixed inset-0 z-[550] flex flex-col justify-between bg-[#0b0b0d]/95 px-6 pb-8 pt-28 backdrop-blur-2xl md:hidden"
             initial={{ y: "-100%" }}
             animate={{ y: 0 }}
             exit={{ y: "-100%" }}
@@ -129,10 +131,10 @@ export default function Navbar() {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.15 + i * 0.06, duration: 0.7, ease: EASE }}
                 >
-                  <span className="font-sans text-xs text-smoke">
+                  <span className="font-sans text-xs text-cream/40">
                     0{i + 1}
                   </span>
-                  <span className="font-display text-5xl font-bold tracking-tight text-mist transition-colors group-hover:text-lime">
+                  <span className="font-serif text-5xl font-bold italic tracking-tight text-cream transition-colors group-hover:text-crimson">
                     {l.label}
                   </span>
                 </motion.button>
@@ -147,11 +149,11 @@ export default function Navbar() {
             >
               <a
                 href={`mailto:${meta.email}`}
-                className="text-sm text-smoke"
+                className="text-sm text-cream/80 transition-colors hover:text-crimson"
               >
                 {meta.email}
               </a>
-              <p className="text-xs uppercase tracking-mega text-smoke/60">
+              <p className="text-xs uppercase tracking-mega text-cream/40">
                 {meta.location} · Open to work
               </p>
             </motion.div>

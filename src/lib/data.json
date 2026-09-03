@@ -155,7 +155,7 @@
             "tech": ["Firebase", "MongoDB", "Dashboards"]
           }
         ],
-        "theme": { "base": "#c9f24a", "from": "#202a04", "to": "#0b0f17" }
+        "theme": { "base": "#c82323", "from": "#2b1111", "to": "#0a0a0e" }
       }
     ]
   },
@@ -170,7 +170,7 @@
         "org": "Freelance / Self-Employed",
         "location": "Mumbai, India",
         "current": true,
-        "accent": "#c9f24a",
+        "accent": "#c82323",
         "points": [
           "Founded & shipped TalkOps (talkops.in) — a Gen AI Sales & Operations SaaS serving real users in production.",
           "Designed a dual-agent AI voice system: LLM conversations, real-time intent detection and sentiment scoring for 24/7 lead qualification.",
@@ -186,7 +186,7 @@
         "org": "Laxman Devram Sonawne College, Kalyan",
         "location": "Kalyan, India",
         "current": true,
-        "accent": "#ffd166",
+        "accent": "#f4f1ea",
         "points": [
           "Bachelor of Science in Information Technology (B.Sc. IT)",
           "Foundational CS, data structures & software engineering curriculum.",

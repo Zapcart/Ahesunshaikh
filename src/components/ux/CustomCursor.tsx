@@ -5,7 +5,7 @@ import { useReducedMotion } from "@/lib/hooks";
 
 /**
  * Custom cursor: fast-following dot + springy ring.
- * Ring scales and glows lime over `[data-cursor="hover"]` targets.
+ * Ring scales and glows crimson over `[data-cursor="hover"]` targets.
  * Fully disabled on coarse pointers and reduced-motion.
  */
 export default function CustomCursor() {

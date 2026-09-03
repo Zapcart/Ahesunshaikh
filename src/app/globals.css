@@ -3,10 +3,11 @@
 @tailwind utilities;
 
 /* ============================================================
-   DESIGN TOKENS — dark, cinematic, Awwwards-grade
+   DESIGN TOKENS — Santioni Spirits Noir & Comic Canvas
+   editorial high-contrast blocks: charcoal ink, crimson, cream
    ============================================================ */
 :root {
-  --bg: #070709;
+  --bg: #121212;
   --ink-950: #070709;
   --ink-900: #0b0b0f;
   --ink-800: #101016;
@@ -16,6 +17,11 @@
   --smoke: #9a9aa3;
   --lime: #c9f24a;
   --coral: #ff6b4a;
+  --charcoal: #121212;
+  --charcoal-light: #1a1a1a;
+  --charcoal-deep: #0e0e0e;
+  --cream: #f4f1ea;
+  --crimson: #c82323;
   --grid-size: 80px;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
@@ -43,13 +49,21 @@
   }
 
   body {
-    @apply bg-ink-950 text-mist font-sans antialiased;
-    overflow-x: hidden;
+    background: var(--charcoal);
+    color: var(--cream);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* `clip` (not `hidden`): `overflow: hidden` on body creates a scroll
+       container that breaks ScrollTrigger's fixed pinning and Lenis smooth
+       scroll. `clip` trims overflow the same way visually but does not
+       establish a scroll context. */
+    overflow-x: clip;
   }
 
   ::selection {
-    background: var(--lime);
-    color: var(--ink-950);
+    background: var(--crimson);
+    color: var(--cream);
   }
 
   /* Custom scrollbar */
@@ -57,14 +71,14 @@
     width: 5px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--ink-950);
+    background: var(--charcoal);
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--ink-600);
+    background: var(--crimson);
     border-radius: 99px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--smoke);
+    background: var(--cream);
   }
 
   a {
@@ -111,16 +125,84 @@
   .chip:hover {
     @apply border-white/25 text-mist;
   }
+
+  /* ----------------------------------------------------------
+     COMIC / GRAPHIC-NOVEL CHROME — panel frames + block shadows
+     ---------------------------------------------------------- */
+
+  /* crisp ink border on light paper */
+  .ink-line {
+    border: 2px solid var(--charcoal-deep);
+  }
+  /* paper frame card (light panel, ink outline, hard drop shadow) */
+  .panel-paper {
+    background: var(--cream);
+    color: var(--charcoal);
+    border: 2px solid #0e0e0e;
+    box-shadow: 6px 6px 0 0 rgba(14, 14, 14, 0.9);
+  }
+  /* dark ink frame card (used on cream / crimson blocks) */
+  .panel-ink {
+    background: #17171b;
+    color: var(--cream);
+    border: 2px solid #0e0e0e;
+    box-shadow: 6px 6px 0 0 rgba(14, 14, 14, 0.85);
+  }
+  /* crimson power panel — headline colour-block cards */
+  .panel-crimson {
+    background: var(--crimson);
+    color: var(--cream);
+    border: 2px solid #0e0e0e;
+    box-shadow: 6px 6px 0 0 rgba(14, 14, 14, 0.85);
+  }
+  /* registration corner ticks — comic proof marks */
+  .comic-ticks {
+    position: relative;
+  }
+  .comic-ticks::before,
+  .comic-ticks::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border: 1.5px solid currentColor;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .comic-ticks::before {
+    top: -1px;
+    left: -1px;
+    border-right: 0;
+    border-bottom: 0;
+  }
+  .comic-ticks::after {
+    bottom: -1px;
+    right: -1px;
+    border-left: 0;
+    border-top: 0;
+  }
 }
 
 @layer utilities {
   .font-outline {
-    -webkit-text-stroke: 1px rgba(233, 233, 236, 0.28);
+    -webkit-text-stroke: 1px rgba(244, 241, 234, 0.5);
+    color: transparent;
+  }
+
+  .font-outline-dark {
+    -webkit-text-stroke: 1.5px rgba(14, 14, 14, 0.8);
     color: transparent;
   }
 
   .text-gradient {
     background: linear-gradient(100deg, #ffffff 0%, #e9e9ec 40%, #9a9aa3 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-crimson {
+    background: linear-gradient(100deg, #c82323 0%, #f4f1ea 55%, #c82323 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -132,6 +214,28 @@
     background-size: var(--grid-size) var(--grid-size);
   }
 
+  .bg-grid-dark {
+    background-image: linear-gradient(rgba(14, 14, 14, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(14, 14, 14, 0.06) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+  }
+
+  /* faint halftone dot wash */
+  .bg-halftone {
+    background-image: radial-gradient(rgba(14, 14, 14, 0.16) 1px, transparent 1px);
+    background-size: 14px 14px;
+  }
+  .bg-halftone-light {
+    background-image: radial-gradient(rgba(244, 241, 234, 0.16) 1px, transparent 1px);
+    background-size: 14px 14px;
+  }
+
+  /* comic "speed" burst ring — stamp / decoration */
+  .halo-crimson {
+    box-shadow: 0 0 0 1px rgba(200, 35, 35, 0.28), 0 0 0 8px rgba(200, 35, 35, 0.1),
+      0 0 0 16px rgba(200, 35, 35, 0.05);
+  }
+
   .mask-fade-y {
     mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
     -webkit-mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
@@ -139,6 +243,15 @@
 
   .grayscale-img {
     filter: grayscale(1) contrast(1.05);
+  }
+
+  /* diagonal ink shade strip */
+  .shade-strip {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      rgba(14, 14, 14, 0.09) 0 2px,
+      transparent 2px 7px
+    );
   }
 
   .noise-overlay {
@@ -247,7 +360,7 @@
 .cursor-ring.is-hover {
   width: 64px;
   height: 64px;
-  border-color: var(--lime);
+  border-color: var(--crimson);
 }
 @media (hover: none), (pointer: coarse) {
   .cursor-dot,

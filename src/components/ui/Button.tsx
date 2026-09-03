@@ -6,9 +6,10 @@ type Variant = "solid" | "outline" | "ghost";
 type Size = "sm" | "md" | "lg";
 
 const styles: Record<Variant, string> = {
-  solid: "bg-lime text-ink-950 hover:bg-mist",
-  outline: "border border-white/20 text-mist hover:border-lime hover:text-lime",
-  ghost: "text-mist/70 hover:text-mist",
+  solid:
+    "rounded-[3px] border-2 border-[#0e0e0e] bg-cream text-[#0e0e0e] shadow-[5px_5px_0_0_#c82323] transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[8px_8px_0_0_#c82323]",
+  outline: "rounded-[3px] border-2 border-cream/25 text-cream hover:border-crimson hover:text-crimson",
+  ghost: "text-cream/70 hover:text-cream",
 };
 
 const sizes: Record<Size, string> = {
