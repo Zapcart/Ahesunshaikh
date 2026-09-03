@@ -48,13 +48,10 @@ export default function Work() {
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          // Function-based pixel end (re-evaluated on every ScrollTrigger.refresh()
-          // thanks to invalidateOnRefresh). Percentage ends are fragile: they are
-          // baked at first measurement and go stale when the preloader lifts or
-          // webfonts swap, which is what left the pin stuck on "System Layer 01".
-          end: () =>
-            "+=" +
-            Math.round(amount * window.innerHeight * 1.3 + window.innerHeight * 0.6),
+          // Keep the pin boundary in pixels rather than viewport percentages.
+          // It remains responsive because this function is re-evaluated by each
+          // refresh after fonts, preloaders, or viewport changes settle.
+          end: () => `+=${Math.max(2000, Math.round(amount * window.innerHeight * 1.3))}`,
           pin: true,
           scrub: 1,
           anticipatePin: 1,
@@ -109,6 +106,12 @@ export default function Work() {
     const onPreloaderDone = () => refresh();
     window.addEventListener("preloader:done", onPreloaderDone);
 
+    // Protect the pin from future dynamic media. The current TalkOps visual is
+    // CSS-generated, but this keeps image-backed project renders measured safely.
+    const media = Array.from(section.querySelectorAll<HTMLImageElement>("img"));
+    const onMediaLoad = () => refresh();
+    media.forEach((image) => image.addEventListener("load", onMediaLoad));
+
     let fontsCanceled = false;
     const fontsReady = document.fonts?.ready;
     if (fontsReady) {
@@ -126,6 +129,7 @@ export default function Work() {
       ctx.revert();
       window.removeEventListener("load", onWindowLoad);
       window.removeEventListener("preloader:done", onPreloaderDone);
+      media.forEach((image) => image.removeEventListener("load", onMediaLoad));
       fontsCanceled = true;
       cancelAnimationFrame(rafId);
       window.clearTimeout(mountTimer);

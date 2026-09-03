@@ -66,19 +66,29 @@
     color: var(--cream);
   }
 
-  /* Custom scrollbar */
+  /* Custom Noir / Comic scrollbar — narrow, sharp, and layout-stable. */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--crimson) var(--charcoal);
+  }
+
   ::-webkit-scrollbar {
-    width: 5px;
+    width: 7px;
+    height: 7px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--charcoal);
+    background: #121212;
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--crimson);
-    border-radius: 99px;
+    background: #c82323;
+    border: 1px solid #121212;
+    border-radius: 0;
   }
   ::-webkit-scrollbar-thumb:hover {
     background: var(--cream);
+  }
+  ::-webkit-scrollbar-corner {
+    background: #121212;
   }
 
   a {
@@ -138,22 +148,22 @@
   .panel-paper {
     background: var(--cream);
     color: var(--charcoal);
-    border: 2px solid #0e0e0e;
-    box-shadow: 6px 6px 0 0 rgba(14, 14, 14, 0.9);
+    border: 3px solid #0e0e0e;
+    box-shadow: 6px 6px 0 0 #000;
   }
   /* dark ink frame card (used on cream / crimson blocks) */
   .panel-ink {
     background: #17171b;
     color: var(--cream);
-    border: 2px solid #0e0e0e;
-    box-shadow: 6px 6px 0 0 rgba(14, 14, 14, 0.85);
+    border: 3px solid #0e0e0e;
+    box-shadow: 6px 6px 0 0 #000;
   }
   /* crimson power panel — headline colour-block cards */
   .panel-crimson {
     background: var(--crimson);
     color: var(--cream);
-    border: 2px solid #0e0e0e;
-    box-shadow: 6px 6px 0 0 rgba(14, 14, 14, 0.85);
+    border: 3px solid #0e0e0e;
+    box-shadow: 6px 6px 0 0 #000;
   }
   /* registration corner ticks — comic proof marks */
   .comic-ticks {
@@ -184,6 +194,21 @@
 }
 
 @layer utilities {
+  /* Use between full-bleed blocks to make the ink → crimson → paper rhythm
+     explicit without adding a new scroll container around pinned content. */
+  .section-transition {
+    position: relative;
+  }
+
+  .section-transition::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 3px;
+    background: var(--crimson);
+    pointer-events: none;
+  }
+
   .font-outline {
     -webkit-text-stroke: 1px rgba(244, 241, 234, 0.5);
     color: transparent;

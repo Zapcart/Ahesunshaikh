@@ -26,7 +26,7 @@ export default function Journey() {
     <section
       id="journey"
       ref={ref}
-      className="relative overflow-hidden bg-[#f4f1ea] py-28 text-[#121212] sm:py-36"
+      className="section-transition relative overflow-hidden bg-[#f4f1ea] py-28 text-[#121212] sm:py-36"
     >
       {/* comic texture washes */}
       <div className="bg-halftone absolute inset-0 opacity-20" aria-hidden />

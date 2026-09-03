@@ -43,7 +43,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-[#0b0b0f] py-32 sm:py-44"
+      className="section-transition relative overflow-hidden bg-[#0b0b0f] py-32 sm:py-44"
     >
       {/* comic texture washes */}
       <div className="bg-grid absolute inset-0 opacity-40" aria-hidden />

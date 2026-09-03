@@ -29,7 +29,7 @@ export default function Skills() {
     <section
       id="skills"
       ref={ref}
-      className="relative overflow-hidden bg-crimson py-28 text-cream sm:py-36"
+      className="section-transition relative overflow-hidden bg-crimson py-28 text-cream sm:py-36"
     >
       {/* cream halftone wash */}
       <div className="bg-halftone-light absolute inset-0 opacity-20" aria-hidden />
