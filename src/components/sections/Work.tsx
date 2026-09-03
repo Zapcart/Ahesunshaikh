@@ -41,6 +41,12 @@ export default function Work() {
     if (amount <= 0) return;
 
     const ctx = gsap.context(() => {
+      // Keep only the current chapter interactive. Every other absolute pane is
+      // parked below the viewport so its copy, metrics, and rail cannot bleed
+      // through the active chapter during the pin.
+      gsap.set(panes, { autoAlpha: 0, pointerEvents: "none", yPercent: 100 });
+      gsap.set(panes[0], { autoAlpha: 1, pointerEvents: "auto", yPercent: 0 });
+
       // Intro visual starts slightly zoomed for parallax exit.
       gsap.set(".work-pane__visual-inner", { scale: 1.16, yPercent: 4 });
 
@@ -62,9 +68,25 @@ export default function Work() {
 
       panes.forEach((pane, i) => {
         if (i >= panes.length - 1) return;
+        const nextPane = panes[i + 1];
 
-        // Slide the current pane up to reveal the next chapter.
-        tl.to(pane, { yPercent: -100, duration: 1, ease: "power2.inOut" }, i);
+        // Move the current chapter out while bringing exactly one next chapter
+        // into the same viewport. The explicit visibility/pointer changes keep
+        // inactive tabs and metrics from becoming an interactive text mesh.
+        tl.to(pane, {
+          yPercent: -100,
+          autoAlpha: 0,
+          pointerEvents: "none",
+          duration: 1,
+          ease: "power2.inOut",
+        }, i);
+        tl.to(nextPane, {
+          yPercent: 0,
+          autoAlpha: 1,
+          pointerEvents: "auto",
+          duration: 1,
+          ease: "power2.inOut",
+        }, i);
 
         // Parallax + fade as the outgoing pane leaves.
         const visualInner = pane.querySelector<HTMLElement>(".work-pane__visual-inner");
@@ -157,13 +179,13 @@ export default function Work() {
 
       <div className="relative h-full overflow-hidden">
         {/* ---- Act 1 · flagship intro ---- */}
-        <div className="work-pane absolute inset-0 h-full w-full">
+        <div className="work-pane absolute inset-0 z-10 h-full w-full bg-[#121212]">
           <TalkOpsIntroSlide project={project} />
         </div>
 
         {/* ---- Act 2 · architecture deep dive ---- */}
         {arch.map((step) => (
-          <div key={step.step} className="work-pane absolute inset-0 h-full w-full">
+          <div key={step.step} className="work-pane absolute inset-0 z-10 h-full w-full bg-[#121212]">
             <ArchitectureSlide step={step} steps={arch} />
           </div>
         ))}
@@ -339,7 +361,7 @@ function ArchitectureSlide({
   const accent = "#c82323";
 
   return (
-    <div className="relative h-full w-full overflow-hidden">
+    <div className="relative h-full w-full overflow-hidden bg-[#121212]">
       {/* ghost step numeral — serif-italic proof numeral */}
       <span
         aria-hidden
